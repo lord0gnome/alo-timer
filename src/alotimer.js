@@ -249,7 +249,7 @@ var AloTimer = (function (TIME_CHAIN, floor, Date, Error) {
         },
         
         get countUpDiff() {
-            return new Date().getTime() - this.msSincePause;
+            return this.timeStart - new Date().getTime() - this.msSincePause;
         },
 
         /**
