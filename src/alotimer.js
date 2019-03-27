@@ -10,14 +10,12 @@ var AloTimer = (function (TIME_CHAIN, floor, Date, Error) {
      * @class
      * @global
      */
-    var AloTimer = function (timeout, timeChain, addSincePause) {
+    var AloTimer = function (timeout, timeChain) {
         /**
          * How long the timeout is set for
          * @type {number}
          */
         this.timeout = timeout || 0;
-
-        this.addSincePause = addSincePause || true;
 
         /**
          * When the timeout started
@@ -104,11 +102,7 @@ var AloTimer = (function (TIME_CHAIN, floor, Date, Error) {
             if (!this.isPaused) {
                 console.warn("The timer isn't paused");
             } else {
-                if (this.addSincePause) {
-                    this.addMS(this.msSincePause);
-                } else {
-                    this.subMS(this.msSincePause);
-                }
+                this.addMS(this.msSincePause);
                 this.pauseTime = false;
             }
             return this;
@@ -252,6 +246,10 @@ var AloTimer = (function (TIME_CHAIN, floor, Date, Error) {
          */
         get diff() {
             return new Date().getTime() - this.timeStart - this.msSincePause;
+        },
+        
+        get countUpDiff() {
+            return new Date().getTime() - this.msSincePause;
         },
 
         /**
