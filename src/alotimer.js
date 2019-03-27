@@ -106,6 +106,8 @@ var AloTimer = (function (TIME_CHAIN, floor, Date, Error) {
             } else {
                 if (this.addSincePause) {
                     this.addMS(this.msSincePause);
+                } else {
+                    this.subMS(this.msSincePause);
                 }
                 this.pauseTime = false;
             }
